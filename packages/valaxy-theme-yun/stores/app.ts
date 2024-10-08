@@ -1,11 +1,33 @@
 import { acceptHMRUpdate, defineStore } from 'pinia'
-import { useDynamicLeftSidebar } from 'valaxy'
+import { isClient, useScroll, useToggle } from '@vueuse/core'
+import { useScreenSize } from 'valaxy'
 
 export const useYunAppStore = defineStore('yun-app', () => {
-  const leftSidebar = useDynamicLeftSidebar()
+  // 左侧边栏
+  const [isLeftSidebarOpen, toggleLeftSidebar] = useToggle()
+  // 右侧边栏
+  const [isRightSidebarOpen, toggleRightSidebar] = useToggle()
+  // 全屏菜单
+  const [isFullscreenMenuOpen, toggleFullscreenMenu] = useToggle()
+
+  // init once
+  const size = useScreenSize()
 
   return {
-    leftSidebar,
+    size,
+    leftSidebar: {
+      isOpen: isLeftSidebarOpen,
+      toggle: toggleLeftSidebar,
+    },
+    rightSidebar: {
+      isOpen: isRightSidebarOpen,
+      toggle: toggleRightSidebar,
+    },
+    fullscreenMenu: {
+      isOpen: isFullscreenMenuOpen,
+      toggle: toggleFullscreenMenu,
+    },
+    scrollY: isClient ? useScroll(window).y : 0,
   }
 })
 

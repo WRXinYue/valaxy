@@ -1,7 +1,5 @@
 import type { DefaultTheme } from 'valaxy/types'
 
-export * from '../composables'
-
 export namespace YunTheme {
   export type Config = ThemeConfig
   export type Sidebar = any
@@ -27,7 +25,7 @@ export namespace YunTheme {
   }
 }
 
-export interface Page {
+export interface PageProps {
   name: string
   /**
    * @description:en-US Page URL
@@ -43,8 +41,9 @@ export interface Page {
   /**
    * @description:en-US Color of icon
    * @description:zh-CN 图标颜色
+   * @default 'var(--va-c-text)'
    */
-  color: string
+  color?: string
 }
 
 /**
@@ -108,6 +107,9 @@ export interface ThemeConfig extends DefaultTheme.Config {
    * ["Hello, World!", "Bye, World!"]
    */
   say: {
+    /**
+     * @default false
+     */
     enable: boolean
     api: string
     hitokoto: {
@@ -130,6 +132,7 @@ export interface ThemeConfig extends DefaultTheme.Config {
   }
 
   /**
+   * [@explosions/fireworks](https://www.npmjs.com/package/@explosions/fireworks)
    * @en - Fireworks when click
    * @zh - 点击时的烟花效果
    */
@@ -144,10 +147,15 @@ export interface ThemeConfig extends DefaultTheme.Config {
   }
 
   /**
+   * nav items
+   * @zh 导航栏 位于页面右上角
+   */
+  nav?: NavItem[]
+  /**
    * @en - Pages
    * @zh - 页面，显示在社交导航栏下方
    */
-  pages: Page[]
+  pages: PageProps[]
 
   sidebar: YunTheme.Sidebar
 
@@ -221,3 +229,43 @@ export interface ThemeConfig extends DefaultTheme.Config {
 }
 
 export type UserThemeConfig = Partial<ThemeConfig>
+
+/**
+ * For user links
+ */
+export interface LinkType {
+  avatar: string
+  name: string
+  url: string
+  color: string
+  blog: string
+  desc: string
+}
+
+export interface NavItemLink {
+  icon?: string
+  link: string
+  text: string
+  active?: string
+}
+
+export interface NavItemGroup {
+  text: string
+  items: NavItemLink[]
+}
+
+export type NavItem = NavItemLink | NavItemGroup
+
+/**
+ * girl
+ */
+export interface GirlType {
+  name: string
+  url: string
+  avatar: string
+  from?: string
+  reason?: string
+}
+
+export * from '../composables'
+export * from './projects'
