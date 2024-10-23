@@ -19,3 +19,4 @@ export * from './outline'
 // utils
 export * from './back'
 export * from './decrypt'
+export * from './search'
