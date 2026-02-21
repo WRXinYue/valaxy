@@ -129,4 +129,5 @@ export default defineValaxyConfig<ThemeConfig>({
       'ahk': 'vscode-icons:file-type-autohotkey',
     },
   },
+
 })

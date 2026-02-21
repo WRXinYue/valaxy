@@ -1,6 +1,5 @@
 <script lang="ts" setup>
 import type { PageData, Post } from 'valaxy'
-import type { StyleValue } from 'vue'
 import { onClickHref, onContentUpdated, scrollTo, usePostTitle, useSiteConfig } from 'valaxy'
 import { computed, nextTick } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
@@ -52,7 +51,8 @@ onContentUpdated(() => {
         flex="~ col grow"
         p="lt-md:0"
       >
-        <YunCard :cover="frontmatter.cover" m="0" class="relative" :style="styles as StyleValue">
+        <YunCard :cover="frontmatter.cover" m="0" :style="styles">
+          <YunPostActions />
           <div class="mt-8 mb-4">
             <slot name="main-header">
               <YunPageHeader
@@ -64,6 +64,7 @@ onContentUpdated(() => {
               />
             </slot>
           </div>
+
           <slot name="main-header-after" />
 
           <div p="x-4 b-8" class="sm:px-6 lg:px-12 xl:px-16" w="full">
