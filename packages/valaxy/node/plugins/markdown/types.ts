@@ -6,10 +6,8 @@ import type { SfcPluginOptions } from '@mdit-vue/plugin-sfc'
 import type { TocPluginOptions } from '@mdit-vue/plugin-toc'
 import type { KatexOptions } from 'katex'
 
-import type MarkdownIt from 'markdown-it'
-import type anchorPlugin from 'markdown-it-anchor'
+import type { MarkdownIt, StateCore, Token } from 'markdown-it'
 
-import type { MarkdownItAsync, Options } from 'markdown-it-async'
 import type {
   BuiltinTheme,
   Highlighter,
@@ -17,11 +15,12 @@ import type {
   ShikiTransformer,
   ThemeRegistration,
 } from 'shiki'
+import type { PageData } from '../../../types'
 
 // import type { lazyloadOptions } from './plugins/markdown-it/lazyload'
 
-import type { PageData } from '../../../types'
 import type { ValaxyFileInfo } from '../../app/state'
+import type { MarkdownItAsync, MarkdownItAsyncOptions } from './async'
 import type { BlockItem, Blocks, ContainerOptions } from './plugins/markdown-it/container'
 
 /**
@@ -40,11 +39,36 @@ export type ThemeOptions
       dark: ThemeRegistration | BuiltinTheme
     }
 
+export interface MarkdownAnchorPermalinkOptions {
+  class?: string
+  symbol?: string
+  renderHref?: (slug: string, state: StateCore) => string
+  renderAttrs?: (slug: string, state: StateCore) => Record<string, string | number>
+}
+
+export type MarkdownAnchorPermalinkGenerator = (
+  slug: string,
+  options: MarkdownAnchorPermalinkOptions,
+  state: StateCore,
+  index: number,
+) => void
+
+export interface MarkdownAnchorOptions {
+  level?: number | number[]
+  slugify?: (value: string) => string
+  slugifyWithState?: (value: string, state: StateCore) => string
+  getTokensText?: (tokens: Token[]) => string
+  uniqueSlugStartIndex?: number
+  permalink?: MarkdownAnchorPermalinkGenerator
+  callback?: (token: Token, info: { slug: string, title: string }) => void
+  tabIndex?: number | false
+}
+
 /**
  * Extend Markdown options
  * @zh 扩展 Markdown 配置，包含代码高亮、Markdown-it 和插件配置
  */
-export interface MarkdownOptions extends Options {
+export interface MarkdownOptions extends MarkdownItAsyncOptions {
   /**
    * Setup markdown-it instance before applying plugins
    */
@@ -57,7 +81,7 @@ export interface MarkdownOptions extends Options {
    * config markdown-it
    */
   config?: (md: MarkdownItAsync) => void
-  anchor?: anchorPlugin.AnchorOptions
+  anchor?: MarkdownAnchorOptions
   attrs?: {
     leftDelimiter?: string
     rightDelimiter?: string

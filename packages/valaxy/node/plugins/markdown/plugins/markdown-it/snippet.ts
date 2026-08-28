@@ -1,8 +1,10 @@
-import type MarkdownIt from 'markdown-it'
-import type { RuleBlock } from 'markdown-it/lib/parser_block.mjs'
+import type { MarkdownIt, StateBlock, Token } from 'markdown-it'
 import type { MarkdownEnv } from '../..'
 import fs from 'fs-extra'
 import path from 'pathe'
+
+type RuleBlock = (state: StateBlock, startLine: number, endLine: number, silent: boolean) => boolean
+type SnippetToken = Token & { src?: [string, string] }
 
 /**
  * raw path format: "/path/to/file.extension#region {meta} [title]"
@@ -100,7 +102,7 @@ function findRegion(lines: Array<string>, regionName: string) {
   return null
 }
 
-export function snippetPlugin(md: MarkdownIt, srcDir: string) {
+export function snippetPlugin(md: MarkdownIt, srcDir = '') {
   const parser: RuleBlock = (state, startLine, endLine, silent) => {
     const CH = '<'.charCodeAt(0)
     const pos = state.bMarks[startLine] + state.tShift[startLine]
@@ -133,15 +135,14 @@ export function snippetPlugin(md: MarkdownIt, srcDir: string) {
 
     state.line = startLine + 1
 
-    const token = state.push('fence', 'code', 0)
+    const token = state.push('fence', 'code', 0) as SnippetToken
     token.info = `${lang || extension}${lines ? `{${lines}}` : ''}${
       title ? `[${title}]` : ''
     }`
 
     const { realPath, path: _path } = state.env as MarkdownEnv
-    const resolvedPath = path.resolve(path.dirname(realPath ?? _path), filepath)
+    const resolvedPath = path.resolve(path.dirname(realPath ?? _path ?? '.'), filepath)
 
-    // @ts-expect-error token.src is not defined in types
     token.src = [resolvedPath, region.slice(1)]
     token.markup = '```'
     token.map = [startLine, startLine + 1]
@@ -152,9 +153,9 @@ export function snippetPlugin(md: MarkdownIt, srcDir: string) {
   const fence = md.renderer.rules.fence!
 
   md.renderer.rules.fence = (...args) => {
-    const [tokens, idx, , { includes }] = args
-    const token = tokens[idx]
-    // @ts-expect-error token.src is not defined in types
+    const [tokens, idx, , env] = args
+    const { includes } = (env ?? {}) as MarkdownEnv
+    const token = tokens[idx] as SnippetToken
     const [src, regionName] = token.src ?? []
 
     if (!src)

@@ -1,7 +1,7 @@
 // markdown-it plugin for generating line numbers.
 // It depends on preWrapper plugin.
 
-import type MarkdownIt from 'markdown-it'
+import type { MarkdownIt } from 'markdown-it'
 import { isPromiseLike } from '../async-utils'
 
 function processLineNumbers(rawCode: string, startLineNumber: number): string {

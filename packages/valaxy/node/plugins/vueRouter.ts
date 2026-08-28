@@ -1,6 +1,6 @@
-import type { MarkdownItAsync } from 'markdown-it-async'
 import type { ExcerptType, Page, Post } from '../../types'
 import type { ValaxyNode } from '../types'
+import type { MarkdownItAsync } from './markdown/async'
 import type { MarkdownBase } from './markdown/base'
 
 import fs from 'fs-extra'

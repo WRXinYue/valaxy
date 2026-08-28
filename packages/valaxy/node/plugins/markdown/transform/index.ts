@@ -1,10 +1,11 @@
-import type MarkdownIt from 'markdown-it'
-import type { MarkdownItAsync } from 'markdown-it-async'
+import type { MarkdownIt } from 'markdown-it'
 
 import type { Plugin } from 'vite'
 import type { StateManager } from '../../../app/state'
 import type { ResolvedValaxyOptions } from '../../../types'
+import type { MarkdownItAsync } from '../async'
 import type { MarkdownBase } from '../base'
+import type { MarkdownEnv } from '../env'
 import Markdown from 'unplugin-vue-markdown/vite'
 import { Valaxy } from '../../../app/class'
 import { logger } from '../../../logger'
@@ -89,13 +90,16 @@ export async function createMarkdownPlugin(
       // get env
       function initEnv(md: MarkdownIt) {
         md.core.ruler.push('valaxy_md_env', (mdState) => {
+          const env = mdState.env as MarkdownEnv
+          if (!env.id)
+            return
           // record to map
           state.set({
-            id: mdState.env.id,
-            title: mdState.env.title,
-            links: mdState.env.links,
-            headers: mdState.env.headers,
-            frontmatter: mdState.env.frontmatter,
+            id: env.id,
+            title: env.title ?? '',
+            links: env.links ?? [],
+            headers: env.headers ?? [],
+            frontmatter: env.frontmatter ?? {},
           })
         })
       }

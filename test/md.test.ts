@@ -37,6 +37,27 @@ describe('standalone markdown renderer configuration', () => {
 
     expect(await md.renderAsync('Configured renderer')).toContain('<p data-custom-renderer="true">')
   })
+
+  it('awaits an async highlighter with markdown-it v15', async () => {
+    const options = await resolveOptions({ userRoot: fixtureFolder.userRoot })
+    options.config.markdown = {
+      highlight: async code => `<pre class="async-highlight"><code>${code}</code></pre>`,
+    }
+    const md = await createMarkdownRenderer(options)
+
+    const content = await md.renderAsync('```ts\nconst answer = 42\n```')
+
+    expect(content).toContain('<pre class="async-highlight">')
+    expect(content).toContain('const answer = 42')
+    expect(content).not.toContain('valaxy-markdown-async')
+  })
+
+  it('resolves absolute code snippets without an environment path', async () => {
+    const md = await createMarkdownRenderer()
+    const snippet = `${fixtureFolder.userRoot}/index.html`
+
+    await expect(md.renderAsync(`<<< ${snippet}`)).resolves.toContain('/head.js')
+  })
 })
 
 describe('markdown base paths', async () => {

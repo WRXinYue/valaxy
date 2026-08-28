@@ -1,4 +1,4 @@
-import type MarkdownIt from 'markdown-it'
+import type { MarkdownIt } from 'markdown-it'
 
 export function footnoteTooltipPlugin(md: MarkdownIt) {
   const originalFootnoteRef = md.renderer.rules.footnote_ref!

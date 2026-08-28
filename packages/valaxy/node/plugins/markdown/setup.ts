@@ -3,14 +3,18 @@ import type { HeadersPluginOptions } from '@mdit-vue/plugin-headers'
 import type { SfcPluginOptions } from '@mdit-vue/plugin-sfc'
 import type { TocPluginOptions } from '@mdit-vue/plugin-toc'
 
-import type MarkdownIt from 'markdown-it'
-import type { MarkdownItAsync } from 'markdown-it-async'
-import type Token from 'markdown-it/lib/token.mjs'
+import type { MarkdownIt, Token } from 'markdown-it'
 import type { UserSiteConfig } from '../../../types'
 
 import type { ResolvedValaxyOptions } from '../../types'
+import type { MarkdownItAsync } from './async'
 import type { MarkdownBase } from './base'
-import type { ThemeOptions } from './types'
+import type {
+  MarkdownAnchorOptions,
+  MarkdownAnchorPermalinkGenerator,
+  MarkdownAnchorPermalinkOptions,
+  ThemeOptions,
+} from './types'
 
 import { sfcPlugin } from '@mdit-vue/plugin-sfc'
 import { tocPlugin } from '@mdit-vue/plugin-toc'
@@ -44,6 +48,17 @@ import { snippetPlugin } from './plugins/markdown-it/snippet'
 
 export const defaultCodeTheme = { light: 'github-light', dark: 'github-dark' } as const as ThemeOptions
 
+// @mdit-vue 3.0.2 still publishes markdown-it v14 declarations, but these
+// plugins only use the stable runtime plugin API and work with markdown-it v15.
+const sfcPluginV15 = sfcPlugin as unknown as (md: MarkdownIt, options: SfcPluginOptions) => void
+const tocPluginV15 = tocPlugin as unknown as (md: MarkdownIt, options: TocPluginOptions) => void
+const anchorPluginV15 = anchorPlugin as unknown as {
+  (md: MarkdownIt, options?: MarkdownAnchorOptions): void
+  permalink: {
+    linkInsideHeader: (options?: MarkdownAnchorPermalinkOptions) => MarkdownAnchorPermalinkGenerator
+  }
+}
+
 export function setupMarkdownPageMetadata(md: MarkdownItAsync, options?: ResolvedValaxyOptions) {
   const mdOptions = options?.config.markdown || {}
   const headersOptions: HeadersPluginOptions = typeof mdOptions.headers === 'boolean'
@@ -62,7 +77,11 @@ export function setupMarkdownPageMetadata(md: MarkdownItAsync, options?: Resolve
   // Extract the same metadata in the core pipeline instead. Callers register
   // this rule after user plugins so it observes the final parsed token stream.
   md.core.ruler.push('valaxy_page_metadata', (state) => {
-    state.env.headers = resolveHeadersFromTokens(state.tokens, {
+    type HeadersTokens = Parameters<typeof resolveHeadersFromTokens>[0]
+    type TitleToken = Parameters<typeof resolveTitleFromToken>[0]
+    const tokens = state.tokens as unknown as HeadersTokens
+
+    state.env.headers = resolveHeadersFromTokens(tokens, {
       level,
       shouldAllowHtml: false,
       shouldAllowNested,
@@ -73,7 +92,7 @@ export function setupMarkdownPageMetadata(md: MarkdownItAsync, options?: Resolve
 
     const titleTokenIndex = state.tokens.findIndex(token => token.tag === 'h1')
     state.env.title = titleTokenIndex > -1
-      ? resolveTitleFromToken(state.tokens[titleTokenIndex + 1], {
+      ? resolveTitleFromToken(state.tokens[titleTokenIndex + 1] as unknown as TitleToken, {
           shouldAllowHtml: false,
           shouldEscapeText: false,
         })
@@ -88,8 +107,8 @@ export async function setupMarkdownPlugins(
   base: MarkdownBase = options?.config.vite?.base || '/',
 ) {
   const mdOptions = options?.config.markdown || {}
-  const theme = mdOptions.theme ?? defaultCodeTheme
   const siteConfig: UserSiteConfig = options?.config.siteConfig || {}
+  const languages = siteConfig.languages?.filter((language): language is string => Boolean(language))
   const resolveBase = createMarkdownBaseResolver(base)
 
   if (mdOptions.preConfig)
@@ -97,10 +116,10 @@ export async function setupMarkdownPlugins(
 
   // custom plugins
   md.use(highlightLinePlugin)
-    .use(preWrapperPlugin, { theme, siteConfig })
-    .use(snippetPlugin, options?.userRoot)
+    .use(preWrapperPlugin, { siteConfig })
+    .use(snippetPlugin, options?.userRoot ?? '')
     .use(containerPlugin, {
-      languages: siteConfig.languages,
+      languages,
       ...mdOptions?.container,
       blocks: {
         ...mdOptions.blocks,
@@ -108,7 +127,7 @@ export async function setupMarkdownPlugins(
       },
     })
     .use(cssI18nContainer, {
-      languages: options?.config.siteConfig.languages,
+      languages,
     })
     .use(
       linkPlugin,
@@ -134,7 +153,7 @@ export async function setupMarkdownPlugins(
     .use(footnoteTooltipPlugin)
 
   // if (!isExcerpt) {
-  md.use(anchorPlugin, {
+  md.use(anchorPluginV15, {
     slugify,
     getTokensText: (tokens) => {
       return tokens
@@ -142,7 +161,7 @@ export async function setupMarkdownPlugins(
         .map(t => t.content)
         .join('')
     },
-    permalink: anchorPlugin.permalink.linkInsideHeader({
+    permalink: anchorPluginV15.permalink.linkInsideHeader({
       symbol: '&ZeroWidthSpace;',
       renderAttrs: (slug, state) => {
         // Find `heading_open` with the id identical to slug
@@ -163,10 +182,10 @@ export async function setupMarkdownPlugins(
   // }
 
   md
-    .use(sfcPlugin, {
+    .use(sfcPluginV15, {
       ...mdOptions.sfc,
     } as SfcPluginOptions)
-    .use(tocPlugin, {
+    .use(tocPluginV15, {
       slugify,
       ...mdOptions.toc,
     } as TocPluginOptions)
@@ -283,5 +302,5 @@ export async function setupMarkdownPlugins(
   if (mdOptions.config)
     mdOptions.config(md)
 
-  return md as MarkdownIt
+  return md
 }

@@ -1,14 +1,15 @@
 import type { Header } from '@valaxyjs/utils'
 
-import type { MarkdownItAsync } from 'markdown-it-async'
 import type { ResolvedValaxyOptions } from '../../types'
+import type { MarkdownItAsync } from './async'
 import type { MarkdownBase } from './base'
-import { createMarkdownItAsync } from 'markdown-it-async'
-import { logger } from '../../logger'
 
+import { logger } from '../../logger'
+import { createMarkdownItAsync } from './async'
 import { getSharedHighlighter } from './highlighterCache'
 import { defaultCodeTheme, setupMarkdownPageMetadata, setupMarkdownPlugins } from './setup'
 
+export * from './async'
 export * from './env'
 export * from './setup'
 export * from './transform'

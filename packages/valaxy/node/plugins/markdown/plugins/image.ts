@@ -1,4 +1,4 @@
-import type MarkdownIt from 'markdown-it'
+import type { MarkdownIt } from 'markdown-it'
 import { EXTERNAL_URL_RE } from '../../../../shared'
 
 /**
@@ -13,7 +13,8 @@ export function imagePlugin(md: MarkdownIt) {
 
   md.renderer.rules.image = (tokens, idx, options, env, self) => {
     const token = tokens[idx]
-    let url = token.attrGet('src')
+    const src = token.attrGet('src')
+    let url = src === null ? null : String(src)
 
     if (url && !EXTERNAL_URL_RE.test(url)) {
       if (!/^\.?\//.test(url))

@@ -1,9 +1,9 @@
 // ref vitepress
 // src/node/markdown/plugins/containers.ts
 
-import type { MarkdownItAsync } from 'markdown-it-async'
-import type Token from 'markdown-it/lib/token.mjs'
+import type { Token } from 'markdown-it'
 
+import type { MarkdownItAsync } from '../../async'
 import container from 'markdown-it-container'
 import {
   extractTitle,

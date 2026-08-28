@@ -148,21 +148,6 @@ catalogs:
     '@types/katex':
       specifier: ^0.16.8
       version: 0.16.8
-    '@types/markdown-it':
-      specifier: ^14.1.2
-      version: 14.1.2
-    '@types/markdown-it-attrs':
-      specifier: ^4.1.3
-      version: 4.1.3
-    '@types/markdown-it-container':
-      specifier: ^4.0.0
-      version: 4.0.0
-    '@types/markdown-it-emoji':
-      specifier: ^3.0.1
-      version: 3.0.1
-    '@types/markdown-it-footnote':
-      specifier: ^3.0.4
-      version: 3.0.4
     '@types/minimist':
       specifier: ^1.2.5
       version: 1.2.5
@@ -329,23 +314,20 @@ catalogs:
       specifier: ^0.5.3
       version: 0.5.3
     markdown-it:
-      specifier: ^14.3.0
-      version: 14.3.0
+      specifier: ^15.0.1
+      version: 15.0.1
     markdown-it-anchor:
-      specifier: ^9.2.0
-      version: 9.2.0
-    markdown-it-async:
-      specifier: ^2.2.0
-      version: 2.2.0
+      specifier: ^9.2.1
+      version: 9.2.1
     markdown-it-attrs:
-      specifier: ^4.5.0
-      version: 4.5.0
+      specifier: ^5.0.1
+      version: 5.0.1
     markdown-it-container:
       specifier: ^4.0.0
       version: 4.0.0
     markdown-it-emoji:
-      specifier: ^3.0.0
-      version: 3.0.0
+      specifier: ^3.1.0
+      version: 3.1.0
     markdown-it-footnote:
       specifier: ^4.0.0
       version: 4.0.0
@@ -491,11 +473,11 @@ catalogs:
       specifier: ^0.10.0
       version: 0.10.0
     vitepress-plugin-group-icons:
-      specifier: ^1.7.5
-      version: 1.7.5
+      specifier: ^1.7.6
+      version: 1.7.6
     vitest:
-      specifier: ^4.1.9
-      version: 4.1.9
+      specifier: ^4.1.11
+      version: 4.1.11
     vue-router:
       specifier: ^5.1.0
       version: 5.1.0
@@ -556,7 +538,7 @@ importers:
     devDependencies:
       '@antfu/eslint-config':
         specifier: 'catalog:'
-        version: 8.3.0(@typescript-eslint/rule-tester@8.56.1(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3))(@typescript-eslint/typescript-estree@8.62.1(typescript@5.9.3))(@typescript-eslint/utils@8.62.1(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3))(@vue/compiler-sfc@3.5.41)(eslint@10.6.0(jiti@2.7.0))(ts-declaration-location@1.0.7(typescript@5.9.3))(typescript@5.9.3)(vitest@4.1.9(@types/node@24.13.2)(jsdom@28.1.0)(vite@8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)))
+        version: 8.3.0(@typescript-eslint/rule-tester@8.56.1(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3))(@typescript-eslint/typescript-estree@8.62.1(typescript@5.9.3))(@typescript-eslint/utils@8.62.1(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3))(@vue/compiler-sfc@3.5.41)(eslint@10.6.0(jiti@2.7.0))(ts-declaration-location@1.0.7(typescript@5.9.3))(typescript@5.9.3)(vitest@4.1.11(@types/node@24.13.2)(jsdom@28.1.0)(vite@8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)))
       '@iconify-json/logos':
         specifier: catalog:build
         version: 1.2.11
@@ -575,15 +557,6 @@ importers:
       '@types/fs-extra':
         specifier: 'catalog:'
         version: 11.0.4
-      '@types/markdown-it-attrs':
-        specifier: 'catalog:'
-        version: 4.1.3
-      '@types/markdown-it-container':
-        specifier: 'catalog:'
-        version: 4.0.0
-      '@types/markdown-it-emoji':
-        specifier: 'catalog:'
-        version: 3.0.1
       '@types/node':
         specifier: 'catalog:'
         version: 24.13.2
@@ -640,7 +613,7 @@ importers:
         version: 3.6.1(sass@1.101.0)(typescript@5.9.3)(vue-tsc@2.2.0(typescript@5.9.3))(vue@3.5.41(typescript@5.9.3))
       vitest:
         specifier: 'catalog:'
-        version: 4.1.9(@types/node@24.13.2)(jsdom@28.1.0)(vite@8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))
+        version: 4.1.11(@types/node@24.13.2)(jsdom@28.1.0)(vite@8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))
       vue-tsc:
         specifier: 'catalog:'
         version: 2.2.0(typescript@5.9.3)
@@ -661,7 +634,7 @@ importers:
         version: 1.1.3(typedoc-plugin-markdown@4.12.0(typedoc@0.28.19(typescript@5.9.3)))
       vitepress:
         specifier: catalog:frontend
-        version: 2.0.0-alpha.17(@types/node@25.2.0)(axios@1.18.1)(change-case@5.4.4)(esbuild@0.28.1)(fuse.js@7.4.2)(jiti@2.7.0)(nprogress@0.2.0)(oxc-minify@0.118.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1))(postcss@8.5.26)(qrcode@1.5.4)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(typescript@5.9.3)(yaml@2.9.0)
+        version: 2.0.0-alpha.17(@types/node@25.2.0)(axios@1.18.1)(change-case@5.4.4)(esbuild@0.28.1)(fuse.js@7.4.2)(jiti@2.7.0)(markdown-it-mathjax3@5.2.0)(nprogress@0.2.0)(oxc-minify@0.118.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1))(postcss@8.5.26)(qrcode@1.5.4)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(typescript@5.9.3)(yaml@2.9.0)
 
   demo/custom:
     dependencies:
@@ -1011,28 +984,25 @@ importers:
         version: 11.5.1
       markdown-it:
         specifier: 'catalog:'
-        version: 14.3.0
+        version: 15.0.1
       markdown-it-anchor:
         specifier: 'catalog:'
-        version: 9.2.0(@types/markdown-it@14.1.2)(markdown-it@14.3.0)
-      markdown-it-async:
-        specifier: 'catalog:'
-        version: 2.2.0
+        version: 9.2.1(@types/markdown-it@14.2.0)(markdown-it@15.0.1)
       markdown-it-attrs:
         specifier: 'catalog:'
-        version: 4.5.0(markdown-it@14.3.0)
+        version: 5.0.1(markdown-it@15.0.1)
       markdown-it-container:
         specifier: 'catalog:'
         version: 4.0.0
       markdown-it-emoji:
         specifier: 'catalog:'
-        version: 3.0.0
+        version: 3.1.0
       markdown-it-footnote:
         specifier: 'catalog:'
         version: 4.0.0
       markdown-it-image-figures:
         specifier: 'catalog:'
-        version: 2.1.1(markdown-it@14.3.0)
+        version: 2.1.1(markdown-it@15.0.1)
       markdown-it-table-of-contents:
         specifier: 'catalog:'
         version: 1.2.0
@@ -1119,7 +1089,7 @@ importers:
         version: 0.10.0
       vitepress-plugin-group-icons:
         specifier: 'catalog:'
-        version: 1.7.5(vite@8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))
+        version: 1.7.6(vite@8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))
       vue-i18n:
         specifier: catalog:build
         version: 11.4.6(vue@3.5.41(typescript@5.9.3))
@@ -1163,12 +1133,6 @@ importers:
       '@types/js-yaml':
         specifier: 'catalog:'
         version: 4.0.9
-      '@types/markdown-it':
-        specifier: 'catalog:'
-        version: 14.1.2
-      '@types/markdown-it-footnote':
-        specifier: 'catalog:'
-        version: 3.0.4
       '@types/nprogress':
         specifier: 'catalog:'
         version: 0.2.3
@@ -1211,7 +1175,7 @@ importers:
     devDependencies:
       vitest:
         specifier: 'catalog:'
-        version: 4.1.9(@types/node@25.2.0)(jsdom@28.1.0)(vite@8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))
+        version: 4.1.11(@types/node@25.2.0)(jsdom@28.1.0)(vite@8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))
 
   packages/valaxy-addon-algolia:
     dependencies:
@@ -1254,7 +1218,7 @@ importers:
         version: link:../valaxy
       vitest:
         specifier: 'catalog:'
-        version: 4.1.9(@types/node@25.2.0)(jsdom@28.1.0)(vite@8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))
+        version: 4.1.11(@types/node@25.2.0)(jsdom@28.1.0)(vite@8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))
       vue:
         specifier: ^3.5.41
         version: 3.5.41(typescript@5.9.3)
@@ -1294,7 +1258,7 @@ importers:
         version: link:../valaxy
       vitest:
         specifier: 'catalog:'
-        version: 4.1.9(@types/node@25.2.0)(jsdom@28.1.0)(vite@8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))
+        version: 4.1.11(@types/node@25.2.0)(jsdom@28.1.0)(vite@8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))
       vue:
         specifier: ^3.5.41
         version: 3.5.41(typescript@5.9.3)
@@ -1336,7 +1300,7 @@ importers:
         version: 2.10.1(vue@3.5.41(typescript@5.9.3))
       vitepress:
         specifier: catalog:frontend
-        version: 2.0.0-alpha.17(@types/node@25.2.0)(axios@1.18.1)(change-case@5.4.4)(esbuild@0.28.1)(fuse.js@7.4.2)(jiti@2.7.0)(nprogress@0.2.0)(oxc-minify@0.118.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1))(postcss@8.5.26)(qrcode@1.5.4)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(typescript@5.9.3)(yaml@2.9.0)
+        version: 2.0.0-alpha.17(@types/node@25.2.0)(axios@1.18.1)(change-case@5.4.4)(esbuild@0.28.1)(fuse.js@7.4.2)(jiti@2.7.0)(markdown-it-mathjax3@5.2.0)(nprogress@0.2.0)(oxc-minify@0.118.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1))(postcss@8.5.26)(qrcode@1.5.4)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(typescript@5.9.3)(yaml@2.9.0)
     devDependencies:
       valaxy:
         specifier: workspace:*
@@ -2426,20 +2390,20 @@ packages:
   '@iconify-json/simple-icons@1.2.88':
     resolution: {integrity: sha512-+cvi1qCuvReL29ehi6t62L4fb7GDXe+UlGHFcsJcV7I2l9wtqn9XE2IBKcDr3CI5iGUGS5ISnXv699pSGpyx1Q==}
 
-  '@iconify-json/vscode-icons@1.2.45':
-    resolution: {integrity: sha512-ow+ueibMIq79ueM1kv6cOWgHx8jfh1XJQi2RrqMHb4HLbvIBlxpy5PCMvOJXlA68R6fBAHpWQeh6uWx7VKEVsA==}
-
   '@iconify-json/vscode-icons@1.2.63':
     resolution: {integrity: sha512-6f0hkFfnMV6L2ICcWknUVu3sTUbvrHHuucKmZp3es3V8mOtGEGBSYsDkUK3ITsPFl1AsNZXNjCR7HzmIhDKaUw==}
+
+  '@iconify-json/vscode-icons@1.2.75':
+    resolution: {integrity: sha512-9nPLpK9cd35iCEZYRSPOmhZ7S2IK4np8Vf/tXdswe5rKhV9Twt+oJ2y+tKfRlugJQavhTJBvejvCpj7Aukki5A==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
 
-  '@iconify/utils@3.1.0':
-    resolution: {integrity: sha512-Zlzem1ZXhI1iHeeERabLNzBHdOa4VhQbqAcOQaMKuTuyZCpwKbC2R4Dd0Zo3g9EAc+Y4fiarO8HIHRAth7+skw==}
-
   '@iconify/utils@3.1.3':
     resolution: {integrity: sha512-LPKOXPn/zV+zis1oOfGWogaXVpqUybF3ZS6SCZIsz8vg0ivVp9+fVqyYB7xq0aiST/VhUQYGO1qo6uoYSiEJqw==}
+
+  '@iconify/utils@3.1.4':
+    resolution: {integrity: sha512-b1S7B1k9ohZ+iNTi2ATxbRYG9fTrJmUT0rc46bvVnNxqNRGW7dyo/vRREwyniI5IRN2RSJHDcm+s3BjWrSAjHw==}
 
   '@internationalized/date@3.11.0':
     resolution: {integrity: sha512-BOx5huLAWhicM9/ZFs84CzP+V3gBW6vlpM02yzsdYC7TGlZJX1OJiEEHcSayF00Z+3jLlm4w79amvSt6RqKN3Q==}
@@ -3707,20 +3671,11 @@ packages:
   '@types/linkify-it@5.0.0':
     resolution: {integrity: sha512-sVDA58zAw4eWAffKOaQH5/5j3XeayukzDk+ewSsnv3p4yJEZHCCzMDiZM8e0OUrRvmpGZ85jf4yDHkHsgBNr9Q==}
 
-  '@types/markdown-it-attrs@4.1.3':
-    resolution: {integrity: sha512-1JsseFdHD6rQHsPcy4W3xx/whxvZ09Z+CqPpnOtrGtpmkFW07N11q7oM383//LtoKv54yn+HGnk6r4ZHUTHJVg==}
-
-  '@types/markdown-it-container@4.0.0':
-    resolution: {integrity: sha512-GmD8OECLfzPHv8VyvFRzslqdwXoDBJ2H40fxXFjrarbqvJZSB/BJKZXN5e3k7Mx7GQanSNzTYhzeS3H9o0gAOw==}
-
-  '@types/markdown-it-emoji@3.0.1':
-    resolution: {integrity: sha512-cz1j8R35XivBqq9mwnsrP2fsz2yicLhB8+PDtuVkKOExwEdsVBNI+ROL3sbhtR5occRZ66vT0QnwFZCqdjf3pA==}
-
-  '@types/markdown-it-footnote@3.0.4':
-    resolution: {integrity: sha512-XJ6n+v+2u+2gmYLSHcxyoNT/YrgrKvHuDJQlykFjuxCQCr86P2/fx1V6/0lcKxv5cSIlCaJ6sUcNS3zDI7I+LA==}
-
   '@types/markdown-it@14.1.2':
     resolution: {integrity: sha512-promo4eFwuiW+TfGxhi+0x3czqTYJkG8qB17ZUJiVF10Xm7NLVRSLUsfRTU/6h1e24VvRnXCx+hG7li58lkzog==}
+
+  '@types/markdown-it@14.2.0':
+    resolution: {integrity: sha512-NoQ2yGlLWj4wpxMs+TYmRKk3thDrQ97agr7sFqfLsAlvoS8SNQuTrlObhFqG9iugdTtgOE9jpJ6FNM4ZGsa5xQ==}
 
   '@types/mdast@4.0.4':
     resolution: {integrity: sha512-kGaNbPh1k7AFzgpud/gMdvIm5xuECykRR+JnWKQno9TAXVa6WIVCGTPvYGekIDL4uwCZQSYbUxNBSb1aUo79oA==}
@@ -4057,11 +4012,11 @@ packages:
       vitest:
         optional: true
 
-  '@vitest/expect@4.1.9':
-    resolution: {integrity: sha512-vl/rYsUKcBr3SnQn166+XR5ZQcgMx3DQhFWdfli/cWpLnLUmbxZvyrJZotLFUryib+LtArYMSTJ5RbQ57ZqrlA==}
+  '@vitest/expect@4.1.11':
+    resolution: {integrity: sha512-VX2x5vNJXET47KAFzwERI+KRMtTTCSWTfSMKsW7JsUsXV4psq++e3DvZpuTDOpHcxytiDs6p2nhVb2tVDiiUYw==}
 
-  '@vitest/mocker@4.1.9':
-    resolution: {integrity: sha512-EVkXzBjrPGM+cK8/ANWgBrkUCfJfb38/EfTSO8h7pWvKkyPkpWxvR7BkD2MyItMF62C97zAEoqdpUixwR/e+Rw==}
+  '@vitest/mocker@4.1.11':
+    resolution: {integrity: sha512-2XJVD55d1o5AZous5CCGKS74g/riOj9odEt2bQpCVZeblHyHdnMeFl4jl0XjU21stf4mbjUkew2eXQZt65g5CQ==}
     peerDependencies:
       msw: ^2.4.9
       vite: ^8.1.3
@@ -4071,20 +4026,20 @@ packages:
       vite:
         optional: true
 
-  '@vitest/pretty-format@4.1.9':
-    resolution: {integrity: sha512-s0iufns3iIFitdgm+YR7g1whCAaGtXz459VS9/PqyKDEEFgYIhsHOQmXgIgDuYCt7DeQmiZT0Qe2OA2p4ZPu5A==}
+  '@vitest/pretty-format@4.1.11':
+    resolution: {integrity: sha512-yiZzPbGTS9Sr/JpFl8zHrcIkAofNbFV6k21vIgQN/cY/oxZeXhJv5sc/MBJ5jFKWmWs+oJHw0UXLZjmf931+Vw==}
 
-  '@vitest/runner@4.1.9':
-    resolution: {integrity: sha512-KXLMDtc7oe70+3mJfGrPUWPesswH+3sTxAMAMl8DG7I8IUQT4XW718dY5ID3vPUcmlu27CcKfY4P3h3I29SLJg==}
+  '@vitest/runner@4.1.11':
+    resolution: {integrity: sha512-LztvUgdwMNJMIkj3hQnnxiC2Xy1zNxq928W/xhjCLaNCzqTZOudjwbQf6v9IntZGPw132i2Lq2rgTRZHD3JHNw==}
 
-  '@vitest/snapshot@4.1.9':
-    resolution: {integrity: sha512-Jc7RKGNBo8Z28WYIm0Niej4xdSPByRf6mU58VpHQkd6Zh05rlnA+twjbK5HyeIGHxrzsc3mJgS43uM0CZKzaIA==}
+  '@vitest/snapshot@4.1.11':
+    resolution: {integrity: sha512-pN7ikn1ON7h8ee4gIAp4AzyK+zBtJPzVbqOgu5LCEh4VaJVbPQcgYQYJIMGQPXVeJJq1fnfazis7a5pFNPahog==}
 
-  '@vitest/spy@4.1.9':
-    resolution: {integrity: sha512-fHpsS6mIi+PiEW+vcRVOMkX1oSaPKne3VOclSFICPcGOmfKgXPU5iAah+wcNcj2xPrCCmfq99IDGf+EojhhvhA==}
+  '@vitest/spy@4.1.11':
+    resolution: {integrity: sha512-apNa/prQy2qCeywhnixOHPRCgGNhvg7T4Dapfl1GahLp/R+uhBm5cPyFoNVyqsNd2h1nJxL6BqqdIjiABL60YA==}
 
-  '@vitest/utils@4.1.9':
-    resolution: {integrity: sha512-A51o8ymO5PpqlWNnBP9ZHPXDIpuMtTLlGSjN7la4US+LJzoUMyhwjA5QXlm39JexgwHKW4Xjs8Z2d3dLCXOeuA==}
+  '@vitest/utils@4.1.11':
+    resolution: {integrity: sha512-zTCVGpyFsGWBhllOyKlTw/vnr6D9qxsfSDyfbyZmTyjHw5N/VuvzHpHoQjm2ZJzn4RJgx5w4r7V0er69CmLgPQ==}
 
   '@volar/language-core@2.4.28':
     resolution: {integrity: sha512-w4qhIJ8ZSitgLAkVay6AbcnC7gP3glYM3fYwKV3srj8m494E3xtrCv6E+bWviiK/8hs6e6t1ij1s2Endql7vzQ==}
@@ -4453,6 +4408,9 @@ packages:
 
   argparse@2.0.1:
     resolution: {integrity: sha512-8+9WqebbFzpX9OR+Wa6O29asIogeRMzcGtAINdpMHHyAg10f05aSFVBbcEqGf/PXw1EjAZ+q2/bEBg3DvurK3Q==}
+
+  argparse@3.0.1:
+    resolution: {integrity: sha512-nM4mHF/KM1v59ZNKX7zfusQz5wUAxR511YG8Vo6TyiV4aqhu++rbJW4v04xsWhpSsHFj66flT8P7znVpyO20xQ==}
 
   args-tokenizer@0.3.0:
     resolution: {integrity: sha512-xXAd7G2Mll5W8uo37GETpQ2VrE84M181Z7ugHFGQnJZ50M2mbOv0osSZ9VsSgPfJQ+LVG0prSi0th+ELMsno7Q==}
@@ -5322,6 +5280,10 @@ packages:
   entities@7.0.1:
     resolution: {integrity: sha512-TWrgLOFUQTH994YUyl1yT4uyavY5nNB5muff+RtWaqNVCAK408b5ZnnbNAUEWLTCpum9w6arT70i1XdQ4UeOPA==}
     engines: {node: '>=0.12'}
+
+  entities@8.0.0:
+    resolution: {integrity: sha512-zwfzJecQ/Uej6tusMqwAqU/6KL2XaB2VZ2Jg54Je6ahNBGNH6Ek6g3jjNCF0fG9EWQKGZNddNjU5F1ZQn/sBnA==}
+    engines: {node: '>=20.19.0'}
 
   env-paths@2.2.1:
     resolution: {integrity: sha512-+h1lkLKhZMTYjog1VEpJNG7NZJWcuc2DDk/qsqSTRRCOXiLjeQ1d1/udrUGhqMxUgAlwKNZ0cf2uqan5GLuS2A==}
@@ -6605,6 +6567,9 @@ packages:
   linkify-it@5.0.2:
     resolution: {integrity: sha512-ONTm2jCMAVZjgQa/Fy1kScXsuOoF5NPTsoFBdE1KVIZ2vAh/r9+Bqo+0jINCBYnavTPQZz38QzFTme79ENoN3Q==}
 
+  linkify-it@6.1.0:
+    resolution: {integrity: sha512-wJ/TwpSDTLepCrQoYWYIExIKg5Zchex2Nn5yk2mFnB+6PtdkHtyLx742md9csRjjOnGkKIS/RrbY7l8D6gT9Vw==}
+
   lint-staged@16.4.0:
     resolution: {integrity: sha512-lBWt8hujh/Cjysw5GYVmZpFHXDCgZzhrOm8vbcUdobADZNOK/bRshr2kM3DfgrrtR1DQhfupW9gnIXOfiFi+bw==}
     engines: {node: '>=20.17'}
@@ -6710,17 +6675,14 @@ packages:
   markdown-exit@1.3.0:
     resolution: {integrity: sha512-bsqlcm3Hk1ukcG1Al83pp3JjVobu4w1mpZz47OzLw8bCY8XchkCX+PXC32l2TH4nZ7p5WFg2NwpnLDXkY1X7Yw==}
 
-  markdown-it-anchor@9.2.0:
-    resolution: {integrity: sha512-sa2ErMQ6kKOA4l31gLGYliFQrMKkqSO0ZJgGhDHKijPf0pNFM9vghjAh3gn26pS4JDRs7Iwa9S36gxm3vgZTzg==}
+  markdown-it-anchor@9.2.1:
+    resolution: {integrity: sha512-p6APiLJDFAW2GEvaavDvhIBn7jrX2jLv77NkBGgNacFTurbORYc4pyYySg/mI6mpR6cHQuAtzKtmqgQr4K8dsQ==}
     peerDependencies:
       '@types/markdown-it': '*'
       markdown-it: '*'
 
-  markdown-it-async@2.2.0:
-    resolution: {integrity: sha512-sITME+kf799vMeO/ww/CjH6q+c05f6TLpn6VOmmWCGNqPJzSh+uFgZoMB9s0plNtW6afy63qglNAC3MhrhP/gg==}
-
-  markdown-it-attrs@4.5.0:
-    resolution: {integrity: sha512-dsuEyK/MDAYsdZLDIaDAQXz5+gP0AAbJ4ZjOSB0w+ZGe4lLbzyCgGg0LApC6j9zUK2F+2SA9VkzXfyNG9hL/8g==}
+  markdown-it-attrs@5.0.1:
+    resolution: {integrity: sha512-dTP49/FLERwbgqmfIG5LwnC99qecIJYalKQbl3pY+7Hajk+Z+cazeEZaKwofpM9KFxvfRVF0UN9GYxKKAakfNg==}
     engines: {node: '>=6'}
     peerDependencies:
       markdown-it: '>= 9.0.0'
@@ -6728,8 +6690,8 @@ packages:
   markdown-it-container@4.0.0:
     resolution: {integrity: sha512-HaNccxUH0l7BNGYbFbjmGpf5aLHAMTinqRZQAEQbMr2cdD3z91Q6kIo1oUn1CQndkT03jat6ckrdRYuwwqLlQw==}
 
-  markdown-it-emoji@3.0.0:
-    resolution: {integrity: sha512-+rUD93bXHubA4arpEZO3q80so0qgoFJEKRkRbjKX8RTdca89v2kfyF+xR3i2sQTwql9tpPZPOQN5B+PunspXRg==}
+  markdown-it-emoji@3.1.0:
+    resolution: {integrity: sha512-NhmMEH2ywduD4Nty1E8uB5NqfLhAT1VR0dyvoJyStKOqCzbZmVdn/+8wj7zpDsb/fLBikpCPsWwxqKlvMmbz4g==}
 
   markdown-it-footnote@4.0.0:
     resolution: {integrity: sha512-WYJ7urf+khJYl3DqofQpYfEYkZKbmXmwxQV8c8mO/hGIhgZ1wOe7R4HLFNwqx7TjILbnC98fuyeSsin19JdFcQ==}
@@ -6755,6 +6717,10 @@ packages:
 
   markdown-it@14.3.0:
     resolution: {integrity: sha512-RCEsPjR+sr0x+AuYp601tKTkgFG4YEPLCzHST3cQ/fhlJkqAkz1L2/Qbp1j9qw5SBwQHFBoW8+hoN5xssOF0Tw==}
+    hasBin: true
+
+  markdown-it@15.0.1:
+    resolution: {integrity: sha512-9/7gE95FNPkfUWrjJIoHZza2iLmuJlPD0UNMxPi7bxUrbCR525YZY0r+zyfes0dZI5ZZ/uNIXUJca0pJvtw41g==}
     hasBin: true
 
   markdown-table@3.0.4:
@@ -6844,6 +6810,9 @@ packages:
 
   mdurl@2.0.0:
     resolution: {integrity: sha512-Lf+9+2r+Tdp5wXDXC4PcIBjTDtq4UKjCPMQhKIuzpJNW0b96kVqSwW0bT7FhRSfmAiFYgP+SCRvdrDozfh0U5w==}
+
+  mdurl@2.1.0:
+    resolution: {integrity: sha512-1+HBaOx0zi/dQWht8rNv9MYf9qqpqL/kxI0hXImU6Y547zM6Sni8BQibt7ifgMcYtQg41ao3Ivd6cnSM86inpg==}
 
   media-typer@0.3.0:
     resolution: {integrity: sha512-dq+qelQ9akHpcOl/gUVRTxVIOkAJ1wR3QAvb4RsVjS8oVoFjDGTc679wJYmUmknUF5HwMLOgb5O+a3KxfWapPQ==}
@@ -8594,6 +8563,9 @@ packages:
   uc.micro@2.1.0:
     resolution: {integrity: sha512-ARDJmphmdvUk6Glw7y9DQ2bFkKBHwQHLi2lsaH6PPmz/Ka9sFOBsBluozhDltWmnv9u/cF6Rt87znRTPV+yp/A==}
 
+  uc.micro@3.0.0:
+    resolution: {integrity: sha512-U3PppEkleoTnIfi8BozMx3yju3qc/L6SwqWo2Sw+54PX+PX0q9I+r1Um5HCmqD7n9VDX5/v3vQH/AjA6deDdtw==}
+
   ufo@1.6.3:
     resolution: {integrity: sha512-yDJTmhydvl5lJzBmy/hyOAA0d+aqCBuwl818haVdYCRrWV84o7YyeVm4QlVHStqNrrJSTb6jKuFAVqAFsr+K3Q==}
 
@@ -8893,8 +8865,8 @@ packages:
       yaml:
         optional: true
 
-  vitepress-plugin-group-icons@1.7.5:
-    resolution: {integrity: sha512-QzcroUuIiVKyXpmEiiHVbfRTQIy9Zbwxpk5JC/zavO8mavitwumz2RZWlwTchMCCHducYyPptkYvXvdnNUWkog==}
+  vitepress-plugin-group-icons@1.7.6:
+    resolution: {integrity: sha512-fXSpQAYHpFpEsZLKWQAwbRx/+0uRSHmY58YNAQcz0AVirGsM6w22jtSmQhOGLEj8ZKyeRtTJrpx6otUI6wvoaQ==}
     peerDependencies:
       vite: ^8.1.3
     peerDependenciesMeta:
@@ -8916,20 +8888,20 @@ packages:
       postcss:
         optional: true
 
-  vitest@4.1.9:
-    resolution: {integrity: sha512-nE3/LEyc0z87uHYLZebqCUOaJr2hdtuPp7BQ4BosVFnfltxgAvMG08NyrSGlPpOUWvR27c5flSmYFTNr78L9GQ==}
+  vitest@4.1.11:
+    resolution: {integrity: sha512-fhACrNXUidIbGSBr5FlbuBkO7VWC1ZyLl0DO4CU2DrQoAPxX84Ysxs+HeGQpii5lZWV1Q4gBZTTu49mF+A6Edw==}
     engines: {node: ^20.0.0 || ^22.0.0 || >=24.0.0}
     hasBin: true
     peerDependencies:
       '@edge-runtime/vm': '*'
       '@opentelemetry/api': ^1.9.0
       '@types/node': ^20.0.0 || ^22.0.0 || >=24.0.0
-      '@vitest/browser-playwright': 4.1.9
-      '@vitest/browser-preview': 4.1.9
-      '@vitest/browser-webdriverio': 4.1.9
-      '@vitest/coverage-istanbul': 4.1.9
-      '@vitest/coverage-v8': 4.1.9
-      '@vitest/ui': 4.1.9
+      '@vitest/browser-playwright': 4.1.11
+      '@vitest/browser-preview': 4.1.11
+      '@vitest/browser-webdriverio': 4.1.11
+      '@vitest/coverage-istanbul': 4.1.11
+      '@vitest/coverage-v8': 4.1.11
+      '@vitest/ui': 4.1.11
       happy-dom: '*'
       jsdom: '*'
       vite: ^8.1.3
@@ -9207,7 +9179,7 @@ snapshots:
   '@acemir/cssom@0.9.31':
     optional: true
 
-  '@antfu/eslint-config@8.3.0(@typescript-eslint/rule-tester@8.56.1(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3))(@typescript-eslint/typescript-estree@8.62.1(typescript@5.9.3))(@typescript-eslint/utils@8.62.1(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3))(@vue/compiler-sfc@3.5.41)(eslint@10.6.0(jiti@2.7.0))(ts-declaration-location@1.0.7(typescript@5.9.3))(typescript@5.9.3)(vitest@4.1.9(@types/node@24.13.2)(jsdom@28.1.0)(vite@8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)))':
+  '@antfu/eslint-config@8.3.0(@typescript-eslint/rule-tester@8.56.1(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3))(@typescript-eslint/typescript-estree@8.62.1(typescript@5.9.3))(@typescript-eslint/utils@8.62.1(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3))(@vue/compiler-sfc@3.5.41)(eslint@10.6.0(jiti@2.7.0))(ts-declaration-location@1.0.7(typescript@5.9.3))(typescript@5.9.3)(vitest@4.1.11(@types/node@24.13.2)(jsdom@28.1.0)(vite@8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)))':
     dependencies:
       '@antfu/install-pkg': 1.1.0
       '@clack/prompts': 1.3.0
@@ -9217,7 +9189,7 @@ snapshots:
       '@stylistic/eslint-plugin': 5.10.0(eslint@10.6.0(jiti@2.7.0))
       '@typescript-eslint/eslint-plugin': 8.62.1(@typescript-eslint/parser@8.62.1(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3))(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3)
       '@typescript-eslint/parser': 8.62.1(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3)
-      '@vitest/eslint-plugin': 1.6.21(@typescript-eslint/eslint-plugin@8.62.1(@typescript-eslint/parser@8.62.1(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3))(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3))(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3)(vitest@4.1.9(@types/node@24.13.2)(jsdom@28.1.0)(vite@8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)))
+      '@vitest/eslint-plugin': 1.6.21(@typescript-eslint/eslint-plugin@8.62.1(@typescript-eslint/parser@8.62.1(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3))(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3))(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3)(vitest@4.1.11(@types/node@24.13.2)(jsdom@28.1.0)(vite@8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)))
       ansis: 4.2.0
       cac: 7.0.0
       eslint: 10.6.0(jiti@2.7.0)
@@ -10087,23 +10059,23 @@ snapshots:
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/vscode-icons@1.2.45':
+  '@iconify-json/vscode-icons@1.2.63':
     dependencies:
       '@iconify/types': 2.0.0
 
-  '@iconify-json/vscode-icons@1.2.63':
+  '@iconify-json/vscode-icons@1.2.75':
     dependencies:
       '@iconify/types': 2.0.0
 
   '@iconify/types@2.0.0': {}
 
-  '@iconify/utils@3.1.0':
+  '@iconify/utils@3.1.3':
     dependencies:
       '@antfu/install-pkg': 1.1.0
       '@iconify/types': 2.0.0
-      mlly: 1.8.2
+      import-meta-resolve: 4.2.0
 
-  '@iconify/utils@3.1.3':
+  '@iconify/utils@3.1.4':
     dependencies:
       '@antfu/install-pkg': 1.1.0
       '@iconify/types': 2.0.0
@@ -10258,13 +10230,13 @@ snapshots:
 
   '@mdit-vue/plugin-component@3.0.2':
     dependencies:
-      '@types/markdown-it': 14.1.2
+      '@types/markdown-it': 14.2.0
       markdown-it: 14.3.0
 
   '@mdit-vue/plugin-frontmatter@3.0.2':
     dependencies:
       '@mdit-vue/types': 3.0.2
-      '@types/markdown-it': 14.1.2
+      '@types/markdown-it': 14.2.0
       gray-matter: 4.0.3
       markdown-it: 14.3.0
 
@@ -10272,33 +10244,33 @@ snapshots:
     dependencies:
       '@mdit-vue/shared': 3.0.2
       '@mdit-vue/types': 3.0.2
-      '@types/markdown-it': 14.1.2
+      '@types/markdown-it': 14.2.0
       markdown-it: 14.3.0
 
   '@mdit-vue/plugin-sfc@3.0.2':
     dependencies:
       '@mdit-vue/types': 3.0.2
-      '@types/markdown-it': 14.1.2
+      '@types/markdown-it': 14.2.0
       markdown-it: 14.3.0
 
   '@mdit-vue/plugin-title@3.0.2':
     dependencies:
       '@mdit-vue/shared': 3.0.2
       '@mdit-vue/types': 3.0.2
-      '@types/markdown-it': 14.1.2
+      '@types/markdown-it': 14.2.0
       markdown-it: 14.3.0
 
   '@mdit-vue/plugin-toc@3.0.2':
     dependencies:
       '@mdit-vue/shared': 3.0.2
       '@mdit-vue/types': 3.0.2
-      '@types/markdown-it': 14.1.2
+      '@types/markdown-it': 14.2.0
       markdown-it: 14.3.0
 
   '@mdit-vue/shared@3.0.2':
     dependencies:
       '@mdit-vue/types': 3.0.2
-      '@types/markdown-it': 14.1.2
+      '@types/markdown-it': 14.2.0
       markdown-it: 14.3.0
 
   '@mdit-vue/types@3.0.2': {}
@@ -11220,23 +11192,12 @@ snapshots:
 
   '@types/linkify-it@5.0.0': {}
 
-  '@types/markdown-it-attrs@4.1.3':
-    dependencies:
-      '@types/markdown-it': 14.1.2
-
-  '@types/markdown-it-container@4.0.0':
-    dependencies:
-      '@types/markdown-it': 14.1.2
-
-  '@types/markdown-it-emoji@3.0.1':
-    dependencies:
-      '@types/markdown-it': 14.1.2
-
-  '@types/markdown-it-footnote@3.0.4':
-    dependencies:
-      '@types/markdown-it': 14.1.2
-
   '@types/markdown-it@14.1.2':
+    dependencies:
+      '@types/linkify-it': 5.0.0
+      '@types/mdurl': 2.0.0
+
+  '@types/markdown-it@14.2.0':
     dependencies:
       '@types/linkify-it': 5.0.0
       '@types/mdurl': 2.0.0
@@ -11680,12 +11641,6 @@ snapshots:
       d3-selection: 3.0.0
       d3-transition: 3.0.1(d3-selection@3.0.0)
 
-  '@vitejs/plugin-vue@6.0.5(vite@8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))(vue@3.5.41(typescript@5.9.3))':
-    dependencies:
-      '@rolldown/pluginutils': 1.0.0-rc.2
-      vite: 8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)
-      vue: 3.5.41(typescript@5.9.3)
-
   '@vitejs/plugin-vue@6.0.5(vite@8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))(vue@3.5.41(typescript@5.9.3))':
     dependencies:
       '@rolldown/pluginutils': 1.0.0-rc.2
@@ -11698,7 +11653,7 @@ snapshots:
       vite: 8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)
       vue: 3.5.41(typescript@5.9.3)
 
-  '@vitest/eslint-plugin@1.6.21(@typescript-eslint/eslint-plugin@8.62.1(@typescript-eslint/parser@8.62.1(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3))(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3))(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3)(vitest@4.1.9(@types/node@24.13.2)(jsdom@28.1.0)(vite@8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)))':
+  '@vitest/eslint-plugin@1.6.21(@typescript-eslint/eslint-plugin@8.62.1(@typescript-eslint/parser@8.62.1(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3))(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3))(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3)(vitest@4.1.11(@types/node@24.13.2)(jsdom@28.1.0)(vite@8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)))':
     dependencies:
       '@typescript-eslint/scope-manager': 8.59.1
       '@typescript-eslint/utils': 8.59.1(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3)
@@ -11706,56 +11661,56 @@ snapshots:
     optionalDependencies:
       '@typescript-eslint/eslint-plugin': 8.62.1(@typescript-eslint/parser@8.62.1(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3))(eslint@10.6.0(jiti@2.7.0))(typescript@5.9.3)
       typescript: 5.9.3
-      vitest: 4.1.9(@types/node@24.13.2)(jsdom@28.1.0)(vite@8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))
+      vitest: 4.1.11(@types/node@24.13.2)(jsdom@28.1.0)(vite@8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))
     transitivePeerDependencies:
       - supports-color
 
-  '@vitest/expect@4.1.9':
+  '@vitest/expect@4.1.11':
     dependencies:
       '@standard-schema/spec': 1.1.0
       '@types/chai': 5.2.3
-      '@vitest/spy': 4.1.9
-      '@vitest/utils': 4.1.9
+      '@vitest/spy': 4.1.11
+      '@vitest/utils': 4.1.11
       chai: 6.2.2
       tinyrainbow: 3.1.0
 
-  '@vitest/mocker@4.1.9(vite@8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))':
+  '@vitest/mocker@4.1.11(vite@8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))':
     dependencies:
-      '@vitest/spy': 4.1.9
+      '@vitest/spy': 4.1.11
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
       vite: 8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)
 
-  '@vitest/mocker@4.1.9(vite@8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))':
+  '@vitest/mocker@4.1.11(vite@8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))':
     dependencies:
-      '@vitest/spy': 4.1.9
+      '@vitest/spy': 4.1.11
       estree-walker: 3.0.3
       magic-string: 0.30.21
     optionalDependencies:
       vite: 8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)
 
-  '@vitest/pretty-format@4.1.9':
+  '@vitest/pretty-format@4.1.11':
     dependencies:
       tinyrainbow: 3.1.0
 
-  '@vitest/runner@4.1.9':
+  '@vitest/runner@4.1.11':
     dependencies:
-      '@vitest/utils': 4.1.9
+      '@vitest/utils': 4.1.11
       pathe: 2.0.3
 
-  '@vitest/snapshot@4.1.9':
+  '@vitest/snapshot@4.1.11':
     dependencies:
-      '@vitest/pretty-format': 4.1.9
-      '@vitest/utils': 4.1.9
+      '@vitest/pretty-format': 4.1.11
+      '@vitest/utils': 4.1.11
       magic-string: 0.30.21
       pathe: 2.0.3
 
-  '@vitest/spy@4.1.9': {}
+  '@vitest/spy@4.1.11': {}
 
-  '@vitest/utils@4.1.9':
+  '@vitest/utils@4.1.11':
     dependencies:
-      '@vitest/pretty-format': 4.1.9
+      '@vitest/pretty-format': 4.1.11
       convert-source-map: 2.0.0
       tinyrainbow: 3.1.0
 
@@ -12136,6 +12091,8 @@ snapshots:
       sprintf-js: 1.0.3
 
   argparse@2.0.1: {}
+
+  argparse@3.0.1: {}
 
   args-tokenizer@0.3.0: {}
 
@@ -13048,6 +13005,8 @@ snapshots:
     optional: true
 
   entities@7.0.1: {}
+
+  entities@8.0.0: {}
 
   env-paths@2.2.1: {}
 
@@ -14535,6 +14494,10 @@ snapshots:
     dependencies:
       uc.micro: 2.1.0
 
+  linkify-it@6.1.0:
+    dependencies:
+      uc.micro: 3.0.0
+
   lint-staged@16.4.0:
     dependencies:
       commander: 14.0.3
@@ -14662,29 +14625,24 @@ snapshots:
       punycode.js: 2.3.1
       uc.micro: 2.1.0
 
-  markdown-it-anchor@9.2.0(@types/markdown-it@14.1.2)(markdown-it@14.3.0):
+  markdown-it-anchor@9.2.1(@types/markdown-it@14.2.0)(markdown-it@15.0.1):
     dependencies:
-      '@types/markdown-it': 14.1.2
-      markdown-it: 14.3.0
+      '@types/markdown-it': 14.2.0
+      markdown-it: 15.0.1
 
-  markdown-it-async@2.2.0:
+  markdown-it-attrs@5.0.1(markdown-it@15.0.1):
     dependencies:
-      '@types/markdown-it': 14.1.2
-      markdown-it: 14.3.0
-
-  markdown-it-attrs@4.5.0(markdown-it@14.3.0):
-    dependencies:
-      markdown-it: 14.3.0
+      markdown-it: 15.0.1
 
   markdown-it-container@4.0.0: {}
 
-  markdown-it-emoji@3.0.0: {}
+  markdown-it-emoji@3.1.0: {}
 
   markdown-it-footnote@4.0.0: {}
 
-  markdown-it-image-figures@2.1.1(markdown-it@14.3.0):
+  markdown-it-image-figures@2.1.1(markdown-it@15.0.1):
     dependencies:
-      markdown-it: 14.3.0
+      markdown-it: 15.0.1
 
   markdown-it-mathjax3@5.2.0:
     dependencies:
@@ -14712,6 +14670,15 @@ snapshots:
       mdurl: 2.0.0
       punycode.js: 2.3.1
       uc.micro: 2.1.0
+
+  markdown-it@15.0.1:
+    dependencies:
+      argparse: 3.0.1
+      entities: 8.0.0
+      linkify-it: 6.1.0
+      mdurl: 2.1.0
+      punycode.js: 2.3.1
+      uc.micro: 3.0.0
 
   markdown-table@3.0.4: {}
 
@@ -14881,6 +14848,8 @@ snapshots:
   mdn-data@2.27.1: {}
 
   mdurl@2.0.0: {}
+
+  mdurl@2.1.0: {}
 
   media-typer@0.3.0: {}
 
@@ -16942,6 +16911,8 @@ snapshots:
 
   uc.micro@2.1.0: {}
 
+  uc.micro@3.0.0: {}
+
   ufo@1.6.3: {}
 
   uglify-js@3.19.3: {}
@@ -17327,11 +17298,11 @@ snapshots:
       tsx: 4.23.0
       yaml: 2.9.0
 
-  vitepress-plugin-group-icons@1.7.5(vite@8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)):
+  vitepress-plugin-group-icons@1.7.6(vite@8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)):
     dependencies:
       '@iconify-json/logos': 1.2.11
-      '@iconify-json/vscode-icons': 1.2.45
-      '@iconify/utils': 3.1.0
+      '@iconify-json/vscode-icons': 1.2.75
+      '@iconify/utils': 3.1.4
     optionalDependencies:
       vite: 8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)
 
@@ -17386,65 +17357,15 @@ snapshots:
       - universal-cookie
       - yaml
 
-  vitepress@2.0.0-alpha.17(@types/node@25.2.0)(axios@1.18.1)(change-case@5.4.4)(esbuild@0.28.1)(fuse.js@7.4.2)(jiti@2.7.0)(nprogress@0.2.0)(oxc-minify@0.118.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1))(postcss@8.5.26)(qrcode@1.5.4)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(typescript@5.9.3)(yaml@2.9.0):
+  vitest@4.1.11(@types/node@24.13.2)(jsdom@28.1.0)(vite@8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)):
     dependencies:
-      '@docsearch/css': 4.6.0
-      '@docsearch/js': 4.6.0
-      '@docsearch/sidepanel-js': 4.6.0
-      '@iconify-json/simple-icons': 1.2.74
-      '@shikijs/core': 3.23.0
-      '@shikijs/transformers': 3.23.0
-      '@shikijs/types': 3.23.0
-      '@types/markdown-it': 14.1.2
-      '@vitejs/plugin-vue': 6.0.5(vite@8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))(vue@3.5.41(typescript@5.9.3))
-      '@vue/devtools-api': 8.0.6
-      '@vue/shared': 3.5.27
-      '@vueuse/core': 14.2.1(vue@3.5.41(typescript@5.9.3))
-      '@vueuse/integrations': 14.2.1(axios@1.18.1)(change-case@5.4.4)(focus-trap@8.0.1)(fuse.js@7.4.2)(nprogress@0.2.0)(qrcode@1.5.4)(vue@3.5.41(typescript@5.9.3))
-      focus-trap: 8.0.1
-      mark.js: 8.11.1
-      minisearch: 7.2.0
-      shiki: 3.23.0
-      vite: 8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)
-      vue: 3.5.41(typescript@5.9.3)
-    optionalDependencies:
-      oxc-minify: 0.118.0(@emnapi/core@1.11.1)(@emnapi/runtime@1.11.1)
-      postcss: 8.5.26
-    transitivePeerDependencies:
-      - '@types/node'
-      - '@vitejs/devtools'
-      - async-validator
-      - axios
-      - change-case
-      - drauu
-      - esbuild
-      - fuse.js
-      - idb-keyval
-      - jiti
-      - jwt-decode
-      - less
-      - nprogress
-      - qrcode
-      - sass
-      - sass-embedded
-      - sortablejs
-      - stylus
-      - sugarss
-      - terser
-      - tsx
-      - typescript
-      - universal-cookie
-      - yaml
-
-  vitest@4.1.9(@types/node@24.13.2)(jsdom@28.1.0)(vite@8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)):
-    dependencies:
-      '@vitest/expect': 4.1.9
-      '@vitest/mocker': 4.1.9(vite@8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))
-      '@vitest/pretty-format': 4.1.9
-      '@vitest/runner': 4.1.9
-      '@vitest/snapshot': 4.1.9
-      '@vitest/spy': 4.1.9
-      '@vitest/utils': 4.1.9
+      '@vitest/expect': 4.1.11
+      '@vitest/mocker': 4.1.11(vite@8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))
+      '@vitest/pretty-format': 4.1.11
+      '@vitest/runner': 4.1.11
+      '@vitest/snapshot': 4.1.11
+      '@vitest/spy': 4.1.11
+      '@vitest/utils': 4.1.11
       es-module-lexer: 2.0.0
       expect-type: 1.3.0
       magic-string: 0.30.21
@@ -17454,7 +17375,7 @@ snapshots:
       std-env: 4.0.0
       tinybench: 2.9.0
       tinyexec: 1.1.2
-      tinyglobby: 0.2.16
+      tinyglobby: 0.2.17
       tinyrainbow: 3.1.0
       vite: 8.1.3(@types/node@24.13.2)(esbuild@0.27.2)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)
       why-is-node-running: 2.3.0
@@ -17464,15 +17385,15 @@ snapshots:
     transitivePeerDependencies:
       - msw
 
-  vitest@4.1.9(@types/node@25.2.0)(jsdom@28.1.0)(vite@8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)):
+  vitest@4.1.11(@types/node@25.2.0)(jsdom@28.1.0)(vite@8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)):
     dependencies:
-      '@vitest/expect': 4.1.9
-      '@vitest/mocker': 4.1.9(vite@8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))
-      '@vitest/pretty-format': 4.1.9
-      '@vitest/runner': 4.1.9
-      '@vitest/snapshot': 4.1.9
-      '@vitest/spy': 4.1.9
-      '@vitest/utils': 4.1.9
+      '@vitest/expect': 4.1.11
+      '@vitest/mocker': 4.1.11(vite@8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0))
+      '@vitest/pretty-format': 4.1.11
+      '@vitest/runner': 4.1.11
+      '@vitest/snapshot': 4.1.11
+      '@vitest/spy': 4.1.11
+      '@vitest/utils': 4.1.11
       es-module-lexer: 2.0.0
       expect-type: 1.3.0
       magic-string: 0.30.21
@@ -17482,7 +17403,7 @@ snapshots:
       std-env: 4.0.0
       tinybench: 2.9.0
       tinyexec: 1.1.2
-      tinyglobby: 0.2.16
+      tinyglobby: 0.2.17
       tinyrainbow: 3.1.0
       vite: 8.1.3(@types/node@25.2.0)(esbuild@0.28.1)(jiti@2.7.0)(sass@1.101.0)(terser@5.46.0)(tsx@4.23.0)(yaml@2.9.0)
       why-is-node-running: 2.3.0

@@ -1,12 +1,12 @@
 // ref vitepress/packages/vitepress/src/node/markdown/plugins/preWrapper.ts
-import type MarkdownIt from 'markdown-it'
-import type { SiteConfig } from '../../../../../types'
+import type { MarkdownIt } from 'markdown-it'
+import type { UserSiteConfig } from '../../../../../types'
 import type { MarkdownEnv } from '../../env'
 import { isPromiseLike } from '../async-utils'
 
 export interface Options {
-  codeCopyButtonTitle: string
-  siteConfig?: SiteConfig
+  codeCopyButtonTitle?: string
+  siteConfig?: UserSiteConfig
 }
 
 export function extractLang(info: string) {
@@ -63,7 +63,7 @@ export function preWrapperPlugin(md: MarkdownIt, options: Options) {
     const lang = extractLang(token.info)
     const rawCode = fence(...args)
 
-    const codeHeightLimitClass = getCodeHeightLimitStyle(options, env)
+    const codeHeightLimitClass = getCodeHeightLimitStyle(options, (env ?? {}) as MarkdownEnv)
 
     const wrap = (code: string) =>
       `<div class="language-${lang}${active}${codeHeightLimitClass}">`
