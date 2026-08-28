@@ -7,7 +7,7 @@ import { createMarkdownItAsync } from 'markdown-it-async'
 import { logger } from '../../logger'
 
 import { getSharedHighlighter } from './highlighterCache'
-import { defaultCodeTheme, setupMarkdownPlugins } from './setup'
+import { defaultCodeTheme, setupMarkdownPageMetadata, setupMarkdownPlugins } from './setup'
 
 export * from './env'
 export * from './setup'
@@ -49,6 +49,7 @@ export async function createMarkdownRenderer(options?: ResolvedValaxyOptions, ba
   await mdOptions.markdownItSetup?.(
     md as unknown as Parameters<NonNullable<typeof mdOptions.markdownItSetup>>[0],
   )
+  setupMarkdownPageMetadata(md, options)
   return md
 }
 
@@ -81,5 +82,6 @@ export async function createLightMarkdownRenderer(options?: ResolvedValaxyOption
   md.linkify.set({ fuzzyLink: false })
 
   await setupMarkdownPlugins(md, options, base)
+  setupMarkdownPageMetadata(md, options)
   return md
 }

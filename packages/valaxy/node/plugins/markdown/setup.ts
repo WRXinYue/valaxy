@@ -12,13 +12,9 @@ import type { ResolvedValaxyOptions } from '../../types'
 import type { MarkdownBase } from './base'
 import type { ThemeOptions } from './types'
 
-import {
-  headersPlugin,
-} from '@mdit-vue/plugin-headers'
 import { sfcPlugin } from '@mdit-vue/plugin-sfc'
-import { titlePlugin } from '@mdit-vue/plugin-title'
 import { tocPlugin } from '@mdit-vue/plugin-toc'
-import { slugify } from '@mdit-vue/shared'
+import { resolveHeadersFromTokens, resolveTitleFromToken, slugify } from '@mdit-vue/shared'
 
 import { cssI18nContainer } from 'css-i18n'
 import anchorPlugin from 'markdown-it-anchor'
@@ -47,6 +43,43 @@ import { preWrapperPlugin } from './plugins/markdown-it/preWrapper'
 import { snippetPlugin } from './plugins/markdown-it/snippet'
 
 export const defaultCodeTheme = { light: 'github-light', dark: 'github-dark' } as const as ThemeOptions
+
+export function setupMarkdownPageMetadata(md: MarkdownItAsync, options?: ResolvedValaxyOptions) {
+  const mdOptions = options?.config.markdown || {}
+  const headersOptions: HeadersPluginOptions = typeof mdOptions.headers === 'boolean'
+    ? {}
+    : mdOptions.headers || {}
+  const {
+    level = [2, 3, 4, 5, 6],
+    shouldAllowNested = false,
+    slugify: headersSlugify = slugify,
+    format,
+  } = headersOptions
+
+  // The @mdit-vue headers and title plugins monkey-patch renderer.render().
+  // markdown-exit honors sync renderer wrappers by routing renderAsync() back
+  // through render(), where an async fence/highlighter rule cannot be awaited.
+  // Extract the same metadata in the core pipeline instead. Callers register
+  // this rule after user plugins so it observes the final parsed token stream.
+  md.core.ruler.push('valaxy_page_metadata', (state) => {
+    state.env.headers = resolveHeadersFromTokens(state.tokens, {
+      level,
+      shouldAllowHtml: false,
+      shouldAllowNested,
+      shouldEscapeText: false,
+      slugify: headersSlugify,
+      format,
+    })
+
+    const titleTokenIndex = state.tokens.findIndex(token => token.tag === 'h1')
+    state.env.title = titleTokenIndex > -1
+      ? resolveTitleFromToken(state.tokens[titleTokenIndex + 1], {
+          shouldAllowHtml: false,
+          shouldEscapeText: false,
+        })
+      : ''
+  })
+}
 
 export async function setupMarkdownPlugins(
   md: MarkdownItAsync,
@@ -130,15 +163,9 @@ export async function setupMarkdownPlugins(
   // }
 
   md
-    .use(headersPlugin, {
-      level: [2, 3, 4, 5, 6],
-      slugify,
-      ...(typeof mdOptions.headers === 'boolean' ? undefined : mdOptions.headers),
-    } as HeadersPluginOptions)
     .use(sfcPlugin, {
       ...mdOptions.sfc,
     } as SfcPluginOptions)
-    .use(titlePlugin)
     .use(tocPlugin, {
       slugify,
       ...mdOptions.toc,

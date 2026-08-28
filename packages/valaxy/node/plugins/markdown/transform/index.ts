@@ -9,7 +9,7 @@ import Markdown from 'unplugin-vue-markdown/vite'
 import { Valaxy } from '../../../app/class'
 import { logger } from '../../../logger'
 import { getSharedHighlighter } from '../highlighterCache'
-import { defaultCodeTheme, setupMarkdownPlugins } from '../setup'
+import { defaultCodeTheme, setupMarkdownPageMetadata, setupMarkdownPlugins } from '../setup'
 import { createTransformIncludes } from './include'
 import { matterOptions } from './matter'
 import { transformMermaid } from './mermaid'
@@ -40,9 +40,13 @@ export async function createMarkdownPlugin(
 
   state.onDispose(dispose)
 
-  // Extract user transforms so they can be composed with internal transforms
-  // instead of being overwritten by `...mdOptions` spread.
-  const { transforms: userTransforms, ...restMdOptions } = mdOptions
+  // Extract user hooks so they can be composed with internal setup and
+  // transforms instead of overwriting them through the options spread.
+  const {
+    transforms: userTransforms,
+    markdownItSetup: userMarkdownItSetup,
+    ...restMdOptions
+  } = mdOptions
 
   return Markdown({
     include: [/\.md$/],
@@ -79,7 +83,8 @@ export async function createMarkdownPlugin(
       // setup mdIt
       await setupMarkdownPlugins(mdIt as unknown as MarkdownItAsync, options, base)
 
-      options?.config.markdown?.markdownItSetup?.(mdIt)
+      await userMarkdownItSetup?.(mdIt)
+      setupMarkdownPageMetadata(mdIt as unknown as MarkdownItAsync, options)
 
       // get env
       function initEnv(md: MarkdownIt) {
