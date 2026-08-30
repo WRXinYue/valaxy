@@ -1,13 +1,12 @@
 // ref vitepress src/node/markdown/env.ts
 import type { MarkdownSfcBlocks } from '@mdit-vue/plugin-sfc'
 import type { Header } from '@valaxyjs/utils'
-import type { Env } from 'markdown-it'
 import type { CleanUrlsMode, Page } from '../../../types'
 
 // Manually declaring all properties as rollup-plugin-dts
 // is unable to merge augmented module declarations
 
-export interface MarkdownEnv extends Env {
+export interface MarkdownEnv {
   /**
    * The raw Markdown content without frontmatter
    */

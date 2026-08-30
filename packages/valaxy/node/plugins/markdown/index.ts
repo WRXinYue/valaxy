@@ -1,16 +1,16 @@
 import type { Header } from '@valaxyjs/utils'
 
 import type { ResolvedValaxyOptions } from '../../types'
-import type { MarkdownItAsync } from './async'
 import type { MarkdownBase } from './base'
+import type { MarkdownRenderer } from './renderer'
 
 import { logger } from '../../logger'
-import { createMarkdownItAsync } from './async'
 import { getSharedHighlighter } from './highlighterCache'
+import { createMarkdownEngine } from './renderer'
 import { defaultCodeTheme, setupMarkdownPageMetadata, setupMarkdownPlugins } from './setup'
 
-export * from './async'
 export * from './env'
+export * from './renderer'
 export * from './setup'
 export * from './transform'
 
@@ -27,7 +27,7 @@ export function disposePreviewMdItInstance() {
   _disposeHighlighter = undefined
 }
 
-export async function createMarkdownRenderer(options?: ResolvedValaxyOptions, base?: MarkdownBase): Promise<MarkdownItAsync> {
+export async function createMarkdownRenderer(options?: ResolvedValaxyOptions, base?: MarkdownBase): Promise<MarkdownRenderer> {
   const mdOptions = options?.config.markdown || {}
   const theme = mdOptions.theme ?? defaultCodeTheme
 
@@ -37,7 +37,7 @@ export async function createMarkdownRenderer(options?: ResolvedValaxyOptions, ba
 
   _disposeHighlighter = dispose
 
-  const md = createMarkdownItAsync({
+  const md = createMarkdownEngine({
     html: true,
     linkify: true,
     ...mdOptions.options,
@@ -47,9 +47,8 @@ export async function createMarkdownRenderer(options?: ResolvedValaxyOptions, ba
   md.linkify.set({ fuzzyLink: false })
 
   await setupMarkdownPlugins(md, options, base)
-  await mdOptions.markdownItSetup?.(
-    md as unknown as Parameters<NonNullable<typeof mdOptions.markdownItSetup>>[0],
-  )
+  const userMarkdownSetup = mdOptions.markdownSetup ?? mdOptions.markdownItSetup
+  await userMarkdownSetup?.(md)
   setupMarkdownPageMetadata(md, options)
   return md
 }
@@ -59,7 +58,7 @@ export async function createMarkdownRenderer(options?: ResolvedValaxyOptions, ba
  * Used by localSearchPlugin where HTML output is stripped anyway,
  * saving ~20-50 MB of Shiki theme/grammar data.
  */
-export async function createLightMarkdownRenderer(options?: ResolvedValaxyOptions, base?: MarkdownBase): Promise<MarkdownItAsync> {
+export async function createLightMarkdownRenderer(options?: ResolvedValaxyOptions, base?: MarkdownBase): Promise<MarkdownRenderer> {
   const mdOptions = options?.config.markdown || {}
 
   // Define highlight separately to avoid circular type inference
@@ -73,7 +72,7 @@ export async function createLightMarkdownRenderer(options?: ResolvedValaxyOption
     return `<pre><code>${escaped}</code></pre>`
   }
 
-  const md = createMarkdownItAsync({
+  const md = createMarkdownEngine({
     html: true,
     linkify: true,
     ...mdOptions.options,
@@ -83,6 +82,8 @@ export async function createLightMarkdownRenderer(options?: ResolvedValaxyOption
   md.linkify.set({ fuzzyLink: false })
 
   await setupMarkdownPlugins(md, options, base)
+  const userMarkdownSetup = mdOptions.markdownSetup ?? mdOptions.markdownItSetup
+  await userMarkdownSetup?.(md)
   setupMarkdownPageMetadata(md, options)
   return md
 }

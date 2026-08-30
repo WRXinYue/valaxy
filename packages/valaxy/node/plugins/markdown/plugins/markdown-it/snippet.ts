@@ -1,5 +1,6 @@
-import type { MarkdownIt, StateBlock, Token } from 'markdown-it'
+import type { StateBlock, Token } from 'markdown-exit'
 import type { MarkdownEnv } from '../..'
+import type { MarkdownRenderer } from '../../renderer'
 import fs from 'fs-extra'
 import path from 'pathe'
 
@@ -102,7 +103,7 @@ function findRegion(lines: Array<string>, regionName: string) {
   return null
 }
 
-export function snippetPlugin(md: MarkdownIt, srcDir = '') {
+export function snippetPlugin(md: MarkdownRenderer, srcDir = '') {
   const parser: RuleBlock = (state, startLine, endLine, silent) => {
     const CH = '<'.charCodeAt(0)
     const pos = state.bMarks[startLine] + state.tShift[startLine]

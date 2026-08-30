@@ -188,7 +188,7 @@ describe('build state', () => {
 
   it('extracts page metadata after user MarkdownIt core rules', async () => {
     const options = createCompileOptions()
-    options.config.markdown!.markdownItSetup = (md) => {
+    options.config.markdown!.markdownSetup = (md) => {
       md.core.ruler.push('test_transform_heading', (markdownState) => {
         const inline = markdownState.tokens.find(token => token.type === 'inline' && token.content === 'Original title')
         if (!inline)
@@ -212,6 +212,32 @@ describe('build state', () => {
     )
 
     expect(state.get(id)?.title).toBe('Transformed title')
+  })
+
+  it('awaits async user renderer rules in the page compiler', async () => {
+    const options = createCompileOptions()
+    options.config.markdown!.markdownSetup = (md) => {
+      md.renderer.rules.paragraph_open = async () => {
+        await Promise.resolve()
+        return '<p data-async-renderer="true">'
+      }
+    }
+    const state = new StateManager()
+    const id = '/project/pages/async-renderer.md'
+    const plugin = await createMarkdownPlugin(options, undefined, state)
+
+    const result = await (plugin.transform as (
+      this: { error: (error: unknown) => never },
+      code: string,
+      id: string,
+    ) => Promise<{ code: string }>).call(
+      { error: (error: unknown) => { throw error } },
+      'Async renderer',
+      id,
+    )
+
+    expect(result.code).toContain('<p data-async-renderer="true">')
+    expect(result.code).not.toContain('[object Promise]')
   })
 
   it('releases orphaned environments at the end of a build cycle', async () => {

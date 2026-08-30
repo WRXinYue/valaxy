@@ -3,12 +3,11 @@ import type { HeadersPluginOptions } from '@mdit-vue/plugin-headers'
 import type { SfcPluginOptions } from '@mdit-vue/plugin-sfc'
 import type { TocPluginOptions } from '@mdit-vue/plugin-toc'
 
-import type { MarkdownIt, Token } from 'markdown-it'
 import type { UserSiteConfig } from '../../../types'
 
 import type { ResolvedValaxyOptions } from '../../types'
-import type { MarkdownItAsync } from './async'
 import type { MarkdownBase } from './base'
+import type { MarkdownRenderer } from './renderer'
 import type {
   MarkdownAnchorOptions,
   MarkdownAnchorPermalinkGenerator,
@@ -34,7 +33,7 @@ import { groupIconMdPlugin } from 'vitepress-plugin-group-icons'
 import { isKatexPluginNeeded, isMathJaxEnabled } from '../../config/valaxy'
 
 import { createMarkdownBaseResolver } from './base'
-import { isPromiseLike } from './plugins/async-utils'
+import { isPromiseLike, mapRenderResult } from './plugins/async-utils'
 import { imagePlugin } from './plugins/image'
 import { linkPlugin } from './plugins/link'
 import { containerPlugin } from './plugins/markdown-it/container'
@@ -48,18 +47,21 @@ import { snippetPlugin } from './plugins/markdown-it/snippet'
 
 export const defaultCodeTheme = { light: 'github-light', dark: 'github-dark' } as const as ThemeOptions
 
-// @mdit-vue 3.0.2 still publishes markdown-it v14 declarations, but these
-// plugins only use the stable runtime plugin API and work with markdown-it v15.
-const sfcPluginV15 = sfcPlugin as unknown as (md: MarkdownIt, options: SfcPluginOptions) => void
-const tocPluginV15 = tocPlugin as unknown as (md: MarkdownIt, options: TocPluginOptions) => void
-const anchorPluginV15 = anchorPlugin as unknown as {
-  (md: MarkdownIt, options?: MarkdownAnchorOptions): void
+// These plugins only use markdown-it's stable structural plugin interface.
+// Their published declarations target markdown-it, while Valaxy's runtime uses
+// the compatible MarkdownExit implementation for async rendering.
+const sfcPluginCompat = sfcPlugin as unknown as (md: MarkdownRenderer, options: SfcPluginOptions) => void
+const tocPluginCompat = tocPlugin as unknown as (md: MarkdownRenderer, options: TocPluginOptions) => void
+const emojiPluginCompat = emojiPlugin as unknown as (md: MarkdownRenderer) => void
+const footnotePluginCompat = footnotePlugin as unknown as (md: MarkdownRenderer) => void
+const anchorPluginCompat = anchorPlugin as unknown as {
+  (md: MarkdownRenderer, options?: MarkdownAnchorOptions): void
   permalink: {
     linkInsideHeader: (options?: MarkdownAnchorPermalinkOptions) => MarkdownAnchorPermalinkGenerator
   }
 }
 
-export function setupMarkdownPageMetadata(md: MarkdownItAsync, options?: ResolvedValaxyOptions) {
+export function setupMarkdownPageMetadata(md: MarkdownRenderer, options?: ResolvedValaxyOptions) {
   const mdOptions = options?.config.markdown || {}
   const headersOptions: HeadersPluginOptions = typeof mdOptions.headers === 'boolean'
     ? {}
@@ -101,7 +103,7 @@ export function setupMarkdownPageMetadata(md: MarkdownItAsync, options?: Resolve
 }
 
 export async function setupMarkdownPlugins(
-  md: MarkdownItAsync,
+  md: MarkdownRenderer,
   options?: ResolvedValaxyOptions,
   // isExcerpt = false,
   base: MarkdownBase = options?.config.vite?.base || '/',
@@ -148,12 +150,12 @@ export async function setupMarkdownPlugins(
   if (!mdOptions.attrs?.disable)
     md.use(attrsPlugin, mdOptions.attrs)
 
-  md.use(emojiPlugin)
-    .use(footnotePlugin)
+  md.use(emojiPluginCompat)
+    .use(footnotePluginCompat)
     .use(footnoteTooltipPlugin)
 
   // if (!isExcerpt) {
-  md.use(anchorPluginV15, {
+  md.use(anchorPluginCompat, {
     slugify,
     getTokensText: (tokens) => {
       return tokens
@@ -161,11 +163,11 @@ export async function setupMarkdownPlugins(
         .map(t => t.content)
         .join('')
     },
-    permalink: anchorPluginV15.permalink.linkInsideHeader({
+    permalink: anchorPluginCompat.permalink.linkInsideHeader({
       symbol: '&ZeroWidthSpace;',
       renderAttrs: (slug, state) => {
         // Find `heading_open` with the id identical to slug
-        const idx = state.tokens.findIndex((token: Token) => {
+        const idx = state.tokens.findIndex((token) => {
           const attrs = token.attrs
           const id = attrs?.find(attr => attr[0] === 'id')
           return id && slug === id[1]
@@ -182,10 +184,10 @@ export async function setupMarkdownPlugins(
   // }
 
   md
-    .use(sfcPluginV15, {
+    .use(sfcPluginCompat, {
       ...mdOptions.sfc,
     } as SfcPluginOptions)
-    .use(tocPluginV15, {
+    .use(tocPluginCompat, {
       slugify,
       ...mdOptions.toc,
     } as TocPluginOptions)
@@ -201,15 +203,17 @@ export async function setupMarkdownPlugins(
       // Add v-pre to prevent Vue from processing MathJax SVG output
       const origMathInline = md.renderer.rules.math_inline!
       md.renderer.rules.math_inline = function (...args) {
-        return origMathInline
-          .apply(this, args)
-          .replace(/^<mjx-container /, '<mjx-container v-pre ')
+        return mapRenderResult(
+          origMathInline.apply(this, args),
+          html => html.replace(/^<mjx-container /, '<mjx-container v-pre '),
+        )
       }
       const origMathBlock = md.renderer.rules.math_block!
       md.renderer.rules.math_block = function (...args) {
-        return origMathBlock
-          .apply(this, args)
-          .replace(/^<mjx-container /, '<mjx-container v-pre tabindex="0" ')
+        return mapRenderResult(
+          origMathBlock.apply(this, args),
+          html => html.replace(/^<mjx-container /, '<mjx-container v-pre tabindex="0" '),
+        )
       }
     }
     catch {

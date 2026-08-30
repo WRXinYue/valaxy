@@ -1,11 +1,9 @@
-import type { MarkdownIt } from 'markdown-it'
-
 import type { Plugin } from 'vite'
 import type { StateManager } from '../../../app/state'
 import type { ResolvedValaxyOptions } from '../../../types'
-import type { MarkdownItAsync } from '../async'
 import type { MarkdownBase } from '../base'
 import type { MarkdownEnv } from '../env'
+import type { MarkdownRenderer } from '../renderer'
 import Markdown from 'unplugin-vue-markdown/vite'
 import { Valaxy } from '../../../app/class'
 import { logger } from '../../../logger'
@@ -16,9 +14,8 @@ import { matterOptions } from './matter'
 import { transformMermaid } from './mermaid'
 import { sanitizeCommentedSfcBlocks } from './sanitize-comment'
 
+export type { MarkdownRenderer } from '../renderer'
 export * from './matter'
-
-export type MarkdownRenderer = MarkdownItAsync
 
 export function disposeMdItInstance() {
   Valaxy.state.dispose()
@@ -45,9 +42,11 @@ export async function createMarkdownPlugin(
   // transforms instead of overwriting them through the options spread.
   const {
     transforms: userTransforms,
+    markdownSetup: userMarkdownSetup,
     markdownItSetup: userMarkdownItSetup,
     ...restMdOptions
   } = mdOptions
+  const setupUserMarkdown = userMarkdownSetup ?? userMarkdownItSetup
 
   return Markdown({
     include: [/\.md$/],
@@ -78,17 +77,17 @@ export async function createMarkdownPlugin(
       ...mdOptions?.markdownItOptions,
     },
 
-    async markdownItSetup(mdIt) {
+    async markdownSetup(mdIt) {
       mdIt.linkify.set({ fuzzyLink: false })
 
       // setup mdIt
-      await setupMarkdownPlugins(mdIt as unknown as MarkdownItAsync, options, base)
+      await setupMarkdownPlugins(mdIt, options, base)
 
-      await userMarkdownItSetup?.(mdIt)
-      setupMarkdownPageMetadata(mdIt as unknown as MarkdownItAsync, options)
+      await setupUserMarkdown?.(mdIt)
+      setupMarkdownPageMetadata(mdIt, options)
 
       // get env
-      function initEnv(md: MarkdownIt) {
+      function initEnv(md: MarkdownRenderer) {
         md.core.ruler.push('valaxy_md_env', (mdState) => {
           const env = mdState.env as MarkdownEnv
           if (!env.id)
@@ -103,7 +102,7 @@ export async function createMarkdownPlugin(
           })
         })
       }
-      mdIt.use(initEnv as any)
+      mdIt.use(initEnv)
     },
 
     transforms: {

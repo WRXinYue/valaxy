@@ -33,6 +33,7 @@
     "@docsearch/css": "catalog:",
     "@docsearch/js": "catalog:",
     "@docsearch/sidepanel-js": "catalog:",
+    "markdown-exit": "catalog:",
     "reka-ui": "catalog:frontend",
     "vitepress": "catalog:frontend"
   },

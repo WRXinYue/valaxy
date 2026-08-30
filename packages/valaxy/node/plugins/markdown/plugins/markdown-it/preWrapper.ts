@@ -1,7 +1,7 @@
 // ref vitepress/packages/vitepress/src/node/markdown/plugins/preWrapper.ts
-import type { MarkdownIt } from 'markdown-it'
 import type { UserSiteConfig } from '../../../../../types'
 import type { MarkdownEnv } from '../../env'
+import type { MarkdownRenderer } from '../../renderer'
 import { isPromiseLike } from '../async-utils'
 
 export interface Options {
@@ -46,7 +46,7 @@ function getCodeHeightLimitStyle(options: Options, env: MarkdownEnv) {
 //   2. <!--afterbegin-->
 //   3. <!--beforeend-->
 //   4. <!--afterend-->
-export function preWrapperPlugin(md: MarkdownIt, options: Options) {
+export function preWrapperPlugin(md: MarkdownRenderer, options: Options) {
   const fence = md.renderer.rules.fence!
   // markdown-exit's fence rule may return Promise<string> for async highlight.
   // Type-assert because markdown-it's RenderRule type doesn't account for this.

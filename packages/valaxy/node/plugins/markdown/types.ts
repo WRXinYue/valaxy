@@ -6,7 +6,7 @@ import type { SfcPluginOptions } from '@mdit-vue/plugin-sfc'
 import type { TocPluginOptions } from '@mdit-vue/plugin-toc'
 import type { KatexOptions } from 'katex'
 
-import type { MarkdownIt, StateCore, Token } from 'markdown-it'
+import type { StateCore, Token } from 'markdown-it'
 
 import type {
   BuiltinTheme,
@@ -20,8 +20,8 @@ import type { PageData } from '../../../types'
 // import type { lazyloadOptions } from './plugins/markdown-it/lazyload'
 
 import type { ValaxyFileInfo } from '../../app/state'
-import type { MarkdownItAsync, MarkdownItAsyncOptions } from './async'
 import type { BlockItem, Blocks, ContainerOptions } from './plugins/markdown-it/container'
+import type { MarkdownRenderer, MarkdownRendererOptions } from './renderer'
 
 /**
  * Immutable per-file snapshot passed through the Markdown compile pipeline.
@@ -68,19 +68,19 @@ export interface MarkdownAnchorOptions {
  * Extend Markdown options
  * @zh 扩展 Markdown 配置，包含代码高亮、Markdown-it 和插件配置
  */
-export interface MarkdownOptions extends MarkdownItAsyncOptions {
+export interface MarkdownOptions extends MarkdownRendererOptions {
   /**
    * Setup markdown-it instance before applying plugins
    */
-  preConfig?: (md: MarkdownItAsync) => void
+  preConfig?: (md: MarkdownRenderer) => void
   /**
    * markdown-it options
    */
-  options?: MarkdownIt['options']
+  options?: MarkdownRenderer['options']
   /**
    * config markdown-it
    */
-  config?: (md: MarkdownItAsync) => void
+  config?: (md: MarkdownRenderer) => void
   anchor?: MarkdownAnchorOptions
   attrs?: {
     leftDelimiter?: string

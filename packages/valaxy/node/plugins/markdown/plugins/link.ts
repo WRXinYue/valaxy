@@ -4,16 +4,16 @@
 // 1. adding target="_blank" to external links
 // 2. normalize internal links to end with `.html`
 
-import type { MarkdownIt } from 'markdown-it'
 import type { MarkdownBaseResolver } from '../base'
 import type { MarkdownEnv } from '../env'
+import type { MarkdownRenderer } from '../renderer'
 import { URL } from 'node:url'
 import { EXTERNAL_URL_RE } from '../../../../shared'
 import { PATHNAME_PROTOCOL_RE } from '../../../constants'
 
 const indexRE = /(^|.*\/)index.md(.*)$/i
 
-export function linkPlugin(md: MarkdownIt, externalAttrs: Record<string, string>, resolveBase: MarkdownBaseResolver) {
+export function linkPlugin(md: MarkdownRenderer, externalAttrs: Record<string, string>, resolveBase: MarkdownBaseResolver) {
   md.renderer.rules.link_open = (
     tokens,
     idx,

@@ -1,4 +1,4 @@
-import type { MarkdownIt } from 'markdown-it'
+import type { MarkdownRenderer } from '../renderer'
 import { EXTERNAL_URL_RE } from '../../../../shared'
 
 /**
@@ -8,7 +8,7 @@ import { EXTERNAL_URL_RE } from '../../../../shared'
  *
  * @see https://vitepress.dev/guide/asset-handling
  */
-export function imagePlugin(md: MarkdownIt) {
+export function imagePlugin(md: MarkdownRenderer) {
   const imageRule = md.renderer.rules.image!
 
   md.renderer.rules.image = (tokens, idx, options, env, self) => {
